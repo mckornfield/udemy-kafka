@@ -1,0 +1,43 @@
+  115  kafka-topics
+  116  kafka-topics --zookeeper
+  117  kafka-topics --zookeeper 127.0.0.1:2181
+  118  kafka-topics --zookeeper 127.0.0.1:2181 --topic first_topic --create
+  119  kafka-topics --zookeeper 127.0.0.1:2181 --topic first_topic --create --partitions 3
+  120  kafka-topics --zookeeper 127.0.0.1:2181 --topic first_topic --create --partitions 3 --replication-factor 2
+  121  kafka-topics --zookeeper 127.0.0.1:2181 --topic first_topic --create --partitions 3 --replication-factor 1
+  122  kafka-topics --zookeeper 127.0.0.1:2181 --list
+  123  kafka-topics --zookeeper 127.0.0.1:2181 --topic first_topic
+  124  kafka-topics --zookeeper 127.0.0.1:2181 --topic first_topic --describe
+  125  kafka-topics --zookeeper 127.0.0.1:2181 --topic second_topic --create --partitions 6 --replication-factor 1
+  126  kafka-topics --zookeeper 127.0.0.1:2181 --list
+  127  kafka-topics --zookeeper 127.0.0.1:2181 --topic second_topic --delete
+  128  kafka-topics --zookeeper 127.0.0.1:2181 --list
+  129  kafka-topics --zookeeper 127.0.0.1:2181 --list
+  130  kafka-console-producer
+  131  kafka-console-producer --broker-list 127.0.0.1:9092 --topic first_topic
+  132  kafka-console-producer --broker-list 127.0.0.1:9092 --topic first_topic --producer-property acks=all
+  140  kafka-topics --zookeeper 127.0.0.1:2181 --topic first_topic --create --partitions 3 --replication-factor 1
+  141  kafka-console-producer --broker-list 127.0.0.1:9092 --topic first_topic --producer-property acks=all
+  142  kafka-console-producer --broker-list 127.0.0.1:9092 --topic new_topic --producer-property acks=all
+  143  kafka-topics --zookeeper 127.0.0.1:2181 --list
+  144  kafka-topics --zookeeper 127.0.0.1:2181 --topic new_topic --describe
+  152  kafka-console-consumer
+  153  kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic
+  154  kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic --from-beginning
+  156 kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic --group my-first-application
+  160  kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic --group my-second-application --from-beginning
+  165  kafka-consumer-groups --bootstrap-server localhost:9092 --list
+  166  kafka-consumer-groups --bootstrap-server localhost:9092 --list
+  167  kafka-consumer-groups --bootstrap-server localhost:9092 --descrbie --group my-second-application
+  168  kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group my-second-application
+  169  kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group my-first-application
+  170  kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic --group my-first-application --from-beginning
+  171  kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group my-first-application
+  172  kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group my-second-application
+    176  kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-application --reset-offsets --to-earliest --execute
+  177  kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-application --reset-offsets --to-earliest --execute --topic first_topic
+  180  kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group my-second-application
+  181  kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group my-first-application
+  182  kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-application --reset-offsets --shift-by 2 --execute --topic first_topic
+  183  kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-application --reset-offsets --shift-by -2 --execute --topic first_topic
+  184  kafka-consumer-groups --bootstrap-server localhost:9092 --group my-first-application --reset-offsets --shift-by -2 --execute --topic first_topic
