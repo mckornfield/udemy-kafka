@@ -26,19 +26,16 @@ public class ProducerDemo {
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
 
         for (int i = 0; i < 10; i++) {
-            ProducerRecord<String, String> producerRecord = new ProducerRecord<>("first-topic", "Hello World #" + i);
+            ProducerRecord<String, String> producerRecord = new ProducerRecord<>("first_topic", "Hello World #" + i);
 
             // Sends data asynchronously
-            producer.send(producerRecord, new Callback() {
-                @Override
-                public void onCompletion(RecordMetadata metadata, Exception exception) {
-                    if (exception == null) {
-                        LOGGER.info("Received new metadata. Topic: {}, Partition: {}, Offset: {}, Timestamp: {}",
-                            metadata.topic(), metadata.partition(), metadata.offset(), metadata.timestamp());
+            producer.send(producerRecord, (metadata, exception) -> {
+                if (exception == null) {
+                    LOGGER.info("Received new metadata. Topic: {}, Partition: {}, Offset: {}, Timestamp: {}",
+                        metadata.topic(), metadata.partition(), metadata.offset(), metadata.timestamp());
 
-                    } else {
-                        LOGGER.info("Error while producing", exception);
-                    }
+                } else {
+                    LOGGER.info("Error while producing", exception);
                 }
             });
         }
